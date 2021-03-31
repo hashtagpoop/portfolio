@@ -334,7 +334,7 @@
 
         .educationCard {
             display: grid; grid-template-columns: 2fr 8fr;
-            height: 100px; width: 90%;
+            width: 90%;
             margin-bottom: 20px;
             border-radius: 3px;
             border: 1px solid rgba(180, 180, 180, 0.219);
@@ -350,12 +350,13 @@
             padding: 10px;
         }
         .educationCard h3 {
-            font-size: 1.45em;
+            font-size: 1.25em;
             margin-bottom: 5px;
             color: inherit;
+            font-weight: lighter;
         }
         .educationCard h4 {
-            font-size: .95em;
+            font-size: .85em;
             font-weight: lighter;
             color: inherit;
         }
@@ -437,6 +438,46 @@
         .fade-enter-from,
         .fade-leave-to {
         opacity: 0;
+        }
+
+
+        /* Media Queries */
+        @media (max-width: 550px) {
+            nav ul {
+                overflow: auto;
+                scrollbar-width: 0;
+                width: 65%;
+            }
+            .toggle-btn {
+                top: 4px;
+                right: -10px;
+            }
+            #intro {
+                grid-template-columns:1fr;
+                row-gap: 30px;
+            }
+            .headshotContainer {
+                width: 260px;height: 260px;
+            }
+            .headshotContainer .circle2 {
+                bottom: -50px;
+            }
+            .experienceContainer {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            #educationAndInterests {
+                grid-template-columns: 1fr;
+                row-gap: 80px;
+            }
+            .educationCard {
+                width: 100%;
+            }
+            .educationCard h3 {
+                font-size: 1.05em;
+            }
+            .educationCard h4 {
+                font-size: .95em;
+            }
         }
 
     </style>
@@ -525,7 +566,7 @@
                 </div>
             </div>
             <div id="interests">
-                <h2 class="sectionHeader">Interests</h2>
+                <h2 class="sectionHeader themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Interests</h2>
             </div>
         </section>
     </div>
