@@ -1,0 +1,626 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&family=Lora&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./static/favicon.ico">
+    <link rel="apple-touch-icon" href="./static/apple-touch-icon.png">
+    <title>Welcome | Ruoyu Chen</title>
+    
+    <style>
+        /* Global Styles
+        ------------------------------------*/
+        html {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Lora', serif;
+        }
+
+        :root {
+            --pagePadding: 20px;
+            --darkBackground: rgb(39, 39, 39);
+            --lightBackground: rgb(255, 255, 255);
+            --primaryFontColor: rgb(39, 39, 39);
+            --secondaryFontColor: rgb(104, 104, 104);
+            --lighterFontColor: rgb(185, 185, 185);
+            --darkThemeFontColor: rgb(255, 255, 255);
+            --primaryColor: #3E76E3;
+            --secondaryColor: #68AFF6;
+            --darkBlue: rgb(75 79 105);
+            --sectionMargin: 25px;
+            --largeFontFamily: 'Barlow Condensed', sans-serif;
+        }
+
+        p, h1, h2, h3, h4 {
+            margin: 0;
+            color: var(--primaryFontColor);
+        }
+
+        ul {
+            padding: 0; margin: 0;
+        }
+
+        ul li {
+            list-style-type: none;
+        }
+
+        .content {
+            padding: var(--pagePadding);
+        }
+
+        .sectionHeader {
+            position: relative;
+        }
+
+        .emphasisColor {
+            color: var(--primaryColor);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0px;
+            margin: 0px var(--pagePadding);
+            border-bottom: 1px solid #bfbfbf;
+            z-index: 10;
+            align-items: center;
+        }
+        nav ul {
+            display: flex;
+        }
+        nav ul li {
+            margin-right: 25px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: unset;
+            transition: all .3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--primaryColor);
+        }
+
+        .toggle-btn
+        {
+            position: absolute;
+            top: -7px; right: 20px;  
+            width: 145px;
+            height: 74px;
+            border-radius: 40px;
+            float: right;
+            transform: scale(.5);
+        }
+
+        input[type="checkbox"]
+        {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            margin: 0px;
+            cursor: pointer;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        /* First toggle btn */
+
+        #toggle-btn span
+        {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            overflow: hidden;
+            opacity: 1;
+            background-color: #fff;
+            box-shadow: 0px 2px 25px #d9d9d9;
+            border-radius: 40px;
+            transition: 0.2s ease background-color, 0.2s ease opacity;
+        }
+
+        #toggle-btn span:before,#toggle-btn span:after
+        {
+            content: '';
+            position: absolute;
+            top: 8px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            transition: 0.5s ease transform, 0.2s ease background-color;
+        }
+
+        #toggle-btn span:before
+        {
+            background-color: #fff;
+            transform: translate(-58px,0px);
+            z-index: 1;
+        }
+
+        #toggle-btn span:after
+        {
+            background-color: #000;
+            transform: translate(8px,0px);
+            z-index: 0;
+        }
+
+        #toggle-btn input[type="checkbox"]:checked + span
+        {
+            background-color: #000;
+        }
+
+        #toggle-btn input[type="checkbox"]:active + span
+        {
+            opacity: 0.5;
+        }
+
+        #toggle-btn input[type="checkbox"]:checked + span:before
+        {
+            background-color: #000;
+            transform: translate(56px,-19px);
+        }
+
+        #toggle-btn input[type="checkbox"]:checked + span:after
+        {
+            background-color: #fff;
+            transform: translate(79px,0px);
+        }
+
+        /* Introduction Section */
+        #intro {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+        }
+
+        .introName {
+            font-size: 6em;
+            font-weight: bolder;
+            font-family: var(--largeFontFamily);
+            letter-spacing: -1px;
+            color: var(--darkBlue);
+        }
+
+        .introQuote {
+            font-size: 2em;
+            margin: 0; margin-top: 40px;
+            color: var(--secondaryFontColor);
+        }
+
+        .headshotContainer {
+            position: relative;
+            width: 300px; height: 300px;
+            margin: auto;
+            background-image: url('./static/headshot.png');
+            background-size: cover;
+        }
+
+        .headshotContainer .circle1 {
+            position: absolute;
+            top: 10px; right: -15px;
+            z-index: -1;
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            background-color: var(--primaryColor);
+        }
+
+        .headshotContainer .circle2 {
+            position: absolute;
+            bottom: 0px; left: 20px;
+            z-index: -1;
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            background-color: var(--primaryColor);
+        }
+
+        /* Experience Section */
+        .experienceContainer {
+            display: grid; margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            row-gap: 30px; column-gap: 30px;
+        }
+
+        /* Position */
+        .experienceCard h3 {
+            font-size: 1.7em; font-weight: lighter;
+        }
+
+        /* Details */
+        .experienceCard h4 {
+            font-size: 1em; margin-top: 10px;
+            color: var(--lighterFontColor);
+            font-weight: lighter;
+        }
+        .experienceSummary {
+            margin-top: 10px;
+            color: var(--secondaryFontColor);
+            line-height: 1.3;
+        }
+
+        .skillsAcquiredContainer {
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .skillsAcquiredContainer p {
+            margin-right: 20px;
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 10px;
+            white-space: nowrap;
+            padding: 7px 10px; border: 1px solid var(--darkBackground);
+        }
+
+        /* Skills Section */
+        #skills {
+            margin-top: var(--sectionMargin);
+        }
+        .skillsContainer {
+            display: grid;
+            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+            column-gap: 15px;
+            row-gap: 15px;
+        }
+        .skillCard {
+            display: inline-block;
+            padding: 10px;
+            height: 200px;
+            border-radius: 3px;
+            border: 1px solid rgba(180, 180, 180, 0.219);
+            box-shadow: 0 2px 5px -4px rgb(0 0 0 / 30%);
+            transition: all .2s ease;
+            position: relative;
+        }
+
+        /* skill name */
+        .skillCard h3 {
+            display: inline-block;
+            align-self: center;
+            font-weight: lighter;
+            font-size: 1.35em;
+        }
+
+        /* Description */
+        .skillCard p {
+            margin-top: 10px;
+            font-size: .95em;
+            color: var(--secondaryFontColor);
+        }
+
+        .skillCard img {
+            width: 28px;
+            display: inline-block;
+            transform: translateY(5px);
+            margin-left: 10px;
+        }
+
+        .skillCard button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            padding: 8px 10px;
+            transition: all .3s ease;
+            background-color: #005DC6;
+            color: white; 
+            border: none; border-radius: 3px;
+        }
+
+        .skillCard button:hover {
+            background-color: var(--primaryColor);
+            cursor: pointer;
+        }
+
+        /* Certifications and Interests */
+        #educationAndInterests {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            column-gap: 20px;
+            margin-top: var(--sectionMargin);
+        }
+
+        .educationCard {
+            display: grid; grid-template-columns: 2fr 8fr;
+            height: 100px; width: 90%;
+            margin-bottom: 20px;
+            border-radius: 3px;
+            border: 1px solid rgba(180, 180, 180, 0.219);
+            box-shadow: 0 2px 5px -4px rgb(0 0 0 / 30%);
+            position: relative;
+        }
+        .educationCard img {
+            /* height is less than height of education card */
+            width: 100%; height: 100px;
+            object-fit: cover;
+        }
+        .educationCard div {
+            padding: 10px;
+        }
+        .educationCard h3 {
+            font-size: 1.45em;
+            margin-bottom: 5px;
+            color: inherit;
+        }
+        .educationCard h4 {
+            font-size: .95em;
+            font-weight: lighter;
+            color: inherit;
+        }
+        .educationCard .educationDate {
+            position:absolute; top: 14px; right: 10px;
+            font-size: .95em; color: var(--secondaryFontColor);
+            color: inherit;
+        }
+
+
+        /* Footer */
+        footer {
+            position: relative;
+            background-color: #594DC8;
+            margin-top: 100px;
+            padding-top: 10px;
+            padding-bottom: 50px;
+        }
+        footer::before {
+            content: "";
+            position: absolute;
+            top: -160px;
+            left: 0;
+            width: 100%;
+            height: 170px;
+            background: linear-gradient( 175deg, rgba(0,0,0,0) 46%, #594DC8 0);
+        }
+        footer h2 {
+            text-align: center;
+            color: white;
+            font-size: 3em;
+            font-weight: bolder;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-family: var(--largeFontFamily);
+            letter-spacing: 3px;
+            z-index: 2;
+        }
+
+        footer .contactInfo {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .contactInfo a img {
+            transition: all .4s ease;
+            cursor: pointer; margin-right: 10px;
+        }
+        .contactInfo a img:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Dark Mode */
+        .darkThemeBackground {
+            background-color: var(--darkBackground);
+        }
+
+        .themeSwap {
+            transition: all .5s ease;
+        }
+
+        .darkThemeFontColor {
+            color: var(--darkThemeFontColor) !important;
+        }
+        .darkThemeSecondaryFontColor {
+            color: var(--lighterFontColor) !important;
+        }
+        .darkThemeSkillsAcquired {
+            border: 1px solid var(--darkThemeFontColor) !important;
+            color: var(--darkThemeFontColor) !important;
+        }
+        
+
+        /* Transitions and Animations */
+        .fade-enter-active,
+        .fade-leave-active {
+        transition: opacity 0.5s ease;
+        }
+
+        .fade-enter-from,
+        .fade-leave-to {
+        opacity: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="app" :class="darkTheme ? 'darkThemeBackground' : ''" class="themeSwap" >
+
+    <div style="width: 97%;margin: auto;">
+        <nav>
+            <ul class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
+                <li><a href="#experience">Experience & Acquired Skills</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+            <div class="toggle-btn" id="toggle-btn">
+                <input v-model="darkTheme" type="checkbox">
+                <span></span>
+            </div>
+        </nav>
+
+        <!-- <hr style="width: 97.5%;margin: auto;margin-bottom: 20px;padding:0;"> -->
+
+        <section class="content" id="intro">
+            <div>
+                <h1 class="introName rellax themeSwap" data-rellax-speed="-1" :class="darkTheme ? 'darkThemeFontColor' : ''">Ruoyu Chen</h1>
+                <blockquote class="introQuote rellax themeSwap" data-rellax-speed="1" :class="darkTheme ? 'darkThemeSecondaryFontColor' : ''"> 
+                    "To know even one life has breathed easier because you have lived. This is to have succeeded."
+                </blockquote>
+            </div>
+            <div class="headshotContainer">
+                <div class="circle1 rellax" data-rellax-speed="-2"></div>
+                <div class="circle2 rellax" data-rellax-speed="2"></div>
+            </div>
+        </section>
+
+        <section class="content" id="experience">
+            <h2 class="sectionHeader themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Experience & Acquired Skills</h2>
+            <div class="experienceContainer">
+                <div class="experienceCard" v-for="experience in experiences">
+                    <h3 class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">{{ experience.title }}</h3>
+                    <h4>{{ experience.company }} | {{ experience.location }} | {{ experience.timeframe }}</h4>
+                    <p class="experienceSummary themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''" v-html="experience.summary"></p>
+                    <div class="skillsAcquiredContainer">
+                        <p class="themeSwap" :class="darkTheme ? 'darkThemeSkillsAcquired' : ''" v-for="skill in experience.skillsAcquired">
+                            {{ skill }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content" id="skills">
+            <h2 class="sectionHeader themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Tools &amp; Skills</h2>
+            <div class="skillsContainer">
+                <div v-for="skill in skills" class="skillCard">
+                    <h3 class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">{{ skill.name }}</h3>
+                    <img :src="skill.picture">
+                    <p class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''" v-html="skill.description">
+                    </p>
+                    <button v-if="skill.showcase">Use Case</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="educationAndInterests" class="content">
+            <div id="education">
+                <h2 class="sectionHeader themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Certifications &amp; Education</h2>
+                <br>
+                <div class="educationCard">
+                    <img src="./static/cba.jpg">
+                    <div class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
+                        <h3>California Board of Accountancy</h3>
+                        <h4>Candidate of the Uniform CPA exam</h4>
+                        <h4>Licensure in progress</h4>
+                    </div>
+                </div>
+                <div class="educationCard">
+                    <img style="height: 90px;align-self: center;" src="./static/sdsu.png">
+                    <div class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
+                        <h3>San Diego State University</h3>
+                        <h4>B.S. in Business Administration with a focus in Accounting</h4>
+                        <h4>Minor in Management Information System</h4>
+                        <p class="educationDate">Aug. 2015 - May 2019</p>
+                    </div>
+                </div>
+            </div>
+            <div id="interests">
+                <h2 class="sectionHeader">Interests</h2>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <h2>Let's Connect</h2>
+        <hr style="height: 3px; width: 100px; background-color: white;">
+        <div class="contactInfo">
+            <a href="https://www.linkedin.com/in/ruoyuchen97/" target="_blank">
+                <img src="./static/linkedin.svg">
+            </a>
+            <a href="mailto:ruoyuchen97@gmail.com">
+                <img src="./static/email.png">
+            </a>
+        </div>
+    </footer>
+</div>
+
+
+<!-- ************************* VUE ************************* --> 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            darkTheme: false,
+            frame: 1,
+            experiences: [
+                {
+                    "title"   : "Audit Associate",
+                    "company" : "KPMG",
+                    "location": "Los Angeles",
+                    "timeframe" : "August 2019 - Current",
+                    "summary" : "Coordinate the understanding, risk assessment, and attest documentation of an SEC-registered bank's $45 Billion Deposit Prepare financial models within excel to forecast anticipated loan interest income  and communicate Budget-to-Actual reducing client incurred expenses by 46% the audit procedures performed over risks of material misstatement Serve as a technical lead for newly adopted technology solutions and communicate benefits to 60+ Senior Associates Review and analyze the 10-K and 10-Q of large public companies to ensure compliance with GAAP and SEC regulations",
+                    "skillsAcquired" : ["Financial Accounting", "Trend and Variance Analysis", "10-K and 10-Q Analysis"]
+                },
+                {
+                    "title"   : "Resident Advisor",
+                    "company" : "San Diego State University",
+                    "location": "San Diego",
+                    "timeframe" : "Sep. 2016 - May 2018",
+                    "summary" : "Coordinate the understanding, risk assessment, and attest documentation of an SEC-registered bank's $45 Billion Deposit Prepare financial models within excel to forecast anticipated loan interest income  and communicate Budget-to-Actual reducing client incurred expenses by 46% the audit procedures performed over risks of material misstatement Serve as a technical lead for newly adopted technology solutions and communicate benefits to 60+ Senior Associates Review and analyze the 10-K and 10-Q of large public companies to ensure compliance with GAAP and SEC regulations",
+                    "skillsAcquired" : ["Critical Thinking", "Conflict Resolution", "Public Speaking"]
+                },
+                {
+                    "title"   : "Business Development Supervisor",
+                    "company" : "CourseKey",
+                    "location": "San Diego",
+                    "timeframe" : "Feb. 2016 - May 2016",
+                    "summary" : "Coordinate the understanding, risk assessment, and attest documentation of an SEC-registered bank's $45 Billion Deposit Prepare financial models within excel to forecast anticipated loan interest income  and communicate Budget-to-Actual reducing client incurred expenses by 46% the audit procedures performed over risks of material misstatement Serve as a technical lead for newly adopted technology solutions and communicate benefits to 60+ Senior Associates Review and analyze the 10-K and 10-Q of large public companies to ensure compliance with GAAP and SEC regulations",
+                    "skillsAcquired" : ["Financial Accounting", "Trend and Variance Analysis", "10-K and 10-Q Analysis"]
+                },
+            ],
+            skills: [
+                {
+                    "name" : "Microsoft Excel",
+                    "picture" : "./static/excel.svg",
+                    "description" : `Skilled in working with excel workbooks - including the use of conditional formatting, 
+                    nested functions, and pivot tables. Able to design and structure workbooks to accomodate changes in inputs.`,
+                    "showcase" : false
+                },
+                {
+                    "name" : "Power BI",
+                    "picture" : "./static/powerbi.svg",
+                    "description" : `Have experience creating reports to help explore the nature & risk attributes of a 
+                    <span class="emphasisColor">$37.7B</span> loan portfolio. Power BI has also been used to monitor project management metrics and design routines to
+                    automate repetitive tasks.`,
+                    "showcase" : false
+                },
+                {
+                    "name" : "Python",
+                    "picture" : "./static/python.svg",
+                    "description" : "To automate workflows by writing scripts that reduce ",
+                    "showcase" : true
+                },
+                {
+                    "name" : "Automation",
+                    "picture" : "./static/automation.png",
+                    "description" : "I use python to automate a lot.",
+                    "showcase" : true
+                },
+                {
+                    "name" : "Financial Modeling",
+                    "picture" : "./static/charts.png",
+                    "description" : "I use the fundamental understanding we developed during risk assessment and review of 10-K to model interest expense.",
+                    "showcase" : true
+                },
+            ]
+        }
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js"></script>
+<script>
+    var rellax = new Rellax('.rellax', {
+        center:false
+    });
+</script>
+</body>
