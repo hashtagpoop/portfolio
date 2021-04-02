@@ -443,13 +443,11 @@
 
         /* Media Queries */
         @media (max-width: 550px) {
-            nav ul {
-                overflow: auto;
-                scrollbar-width: 0;
-                width: 65%;
+            nav ul li {
+                margin-right: 12px;
             }
             .toggle-btn {
-                top: 4px;
+                top: -7px;
                 right: -10px;
             }
             #intro {
@@ -473,10 +471,13 @@
                 width: 100%;
             }
             .educationCard h3 {
-                font-size: 1.05em;
+                font-size: .95em;
             }
             .educationCard h4 {
-                font-size: .95em;
+                font-size: .85em;
+            }
+            .educationCard .educationDate {
+                display: none;
             }
         }
 
@@ -489,7 +490,7 @@
     <div style="width: 97%;margin: auto;">
         <nav>
             <ul class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
-                <li><a href="#experience">Experience & Acquired Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#education">Education</a></li>
             </ul>
@@ -559,14 +560,18 @@
                     <img style="height: 90px;align-self: center;" src="./static/sdsu.png">
                     <div class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
                         <h3>San Diego State University</h3>
-                        <h4>B.S. in Business Administration with a focus in Accounting</h4>
-                        <h4>Minor in Management Information System</h4>
+                        <ul>
+                            <li>B.S. in Business Administration with a focus in Accounting</li>
+                            <li>Minor in Management Information System</li>
+                        </ul>
+                        <!-- <h4>B.S. in Business Administration with a focus in Accounting</h4>
+                        <h4>Minor in Management Information System</h4> -->
                         <p class="educationDate">Aug. 2015 - May 2019</p>
                     </div>
                 </div>
             </div>
             <div id="interests">
-                <h2 class="sectionHeader themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Interests</h2>
+                <h2 class="sectionHeader themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''"></h2>
             </div>
         </section>
     </div>
@@ -600,7 +605,7 @@
                     "company" : "KPMG",
                     "location": "Los Angeles",
                     "timeframe" : "August 2019 - Current",
-                    "summary" : "Coordinate the understanding, risk assessment, and attest documentation of an SEC-registered bank's $45 Billion Deposit Prepare financial models within excel to forecast anticipated loan interest income  and communicate Budget-to-Actual reducing client incurred expenses by 46% the audit procedures performed over risks of material misstatement Serve as a technical lead for newly adopted technology solutions and communicate benefits to 60+ Senior Associates Review and analyze the 10-K and 10-Q of large public companies to ensure compliance with GAAP and SEC regulations",
+                    "summary" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec purus neque, aliquet pellentesque malesuada ac, consequat id sapien. In ultrices metus sit amet pellentesque dictum. Curabitur in tempus leo. In quis fermentum diam. Morbi eget vehicula urna, euismod egestas elit. In felis libero, fringilla eget augue ac, scelerisque lacinia elit. Nulla tincidunt odio vel commodo varius. Integer a tincidunt leo, eu iaculis odio. Mauris convallis scelerisque massa quis malesuada. Phasellus urna enim, posuere in cursus convallis, tempor eget purus. Fusce vitae metus in tortor tempus imperdiet. Fusce laoreet purus eget turpis iaculis, eget lacinia massa varius.",
                     "skillsAcquired" : ["Financial Accounting", "Trend and Variance Analysis", "10-K and 10-Q Analysis"]
                 },
                 {
@@ -608,7 +613,7 @@
                     "company" : "San Diego State University",
                     "location": "San Diego",
                     "timeframe" : "Sep. 2016 - May 2018",
-                    "summary" : "Coordinate the understanding, risk assessment, and attest documentation of an SEC-registered bank's $45 Billion Deposit Prepare financial models within excel to forecast anticipated loan interest income  and communicate Budget-to-Actual reducing client incurred expenses by 46% the audit procedures performed over risks of material misstatement Serve as a technical lead for newly adopted technology solutions and communicate benefits to 60+ Senior Associates Review and analyze the 10-K and 10-Q of large public companies to ensure compliance with GAAP and SEC regulations",
+                    "summary" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec purus neque, aliquet pellentesque malesuada ac, consequat id sapien. In ultrices metus sit amet pellentesque dictum. Curabitur in tempus leo. In quis fermentum diam. Morbi eget vehicula urna, euismod egestas elit. In felis libero, fringilla eget augue ac, scelerisque lacinia elit. Nulla tincidunt odio vel commodo varius. Integer a tincidunt leo, eu iaculis odio. Mauris convallis scelerisque massa quis malesuada. Phasellus urna enim, posuere in cursus convallis, tempor eget purus. Fusce vitae metus in tortor tempus imperdiet. Fusce laoreet purus eget turpis iaculis, eget lacinia massa varius.",
                     "skillsAcquired" : ["Critical Thinking", "Conflict Resolution", "Public Speaking"]
                 },
                 {
@@ -616,7 +621,7 @@
                     "company" : "CourseKey",
                     "location": "San Diego",
                     "timeframe" : "Feb. 2016 - May 2016",
-                    "summary" : "Coordinate the understanding, risk assessment, and attest documentation of an SEC-registered bank's $45 Billion Deposit Prepare financial models within excel to forecast anticipated loan interest income  and communicate Budget-to-Actual reducing client incurred expenses by 46% the audit procedures performed over risks of material misstatement Serve as a technical lead for newly adopted technology solutions and communicate benefits to 60+ Senior Associates Review and analyze the 10-K and 10-Q of large public companies to ensure compliance with GAAP and SEC regulations",
+                    "summary" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec purus neque, aliquet pellentesque malesuada ac, consequat id sapien. In ultrices metus sit amet pellentesque dictum. Curabitur in tempus leo. In quis fermentum diam. Morbi eget vehicula urna, euismod egestas elit. In felis libero, fringilla eget augue ac, scelerisque lacinia elit. Nulla tincidunt odio vel commodo varius. Integer a tincidunt leo, eu iaculis odio. Mauris convallis scelerisque massa quis malesuada. Phasellus urna enim, posuere in cursus convallis, tempor eget purus. Fusce vitae metus in tortor tempus imperdiet. Fusce laoreet purus eget turpis iaculis, eget lacinia massa varius.",
                     "skillsAcquired" : ["Financial Accounting", "Trend and Variance Analysis", "10-K and 10-Q Analysis"]
                 },
             ],
@@ -624,34 +629,26 @@
                 {
                     "name" : "Microsoft Excel",
                     "picture" : "./static/excel.svg",
-                    "description" : `Skilled in working with excel workbooks - including the use of conditional formatting, 
-                    nested functions, and pivot tables. Able to design and structure workbooks to accomodate changes in inputs.`,
+                    "description" : `My primary uses of excel are to clean and prepare data for analysis, create models and reports to provide succinct, high-level summaries, and organize and validate data.`,
                     "showcase" : false
                 },
                 {
                     "name" : "Power BI",
                     "picture" : "./static/powerbi.svg",
-                    "description" : `Have experience creating reports to help explore the nature & risk attributes of a 
-                    <span class="emphasisColor">$37.7B</span> loan portfolio. Power BI has also been used to monitor project management metrics and design routines to
-                    automate repetitive tasks.`,
+                    "description" : `I enjoy using Power BI for exploratory data analysis and project management & KPI monitoring. I appreciate the intuitive dashboard interface and how easy it is to create dynamic dashboards.`,
                     "showcase" : false
                 },
                 {
                     "name" : "Python",
                     "picture" : "./static/python.svg",
-                    "description" : "To automate workflows by writing scripts that reduce ",
+                    "description" : `My Python area of expertise lies in automation scripts, data manipulation & analysis, and data collection through web scraping. See some business use cases I have implemented at my previous jobs.`,
                     "showcase" : true
                 },
                 {
                     "name" : "Automation",
                     "picture" : "./static/automation.png",
-                    "description" : "I use python to automate a lot.",
-                    "showcase" : true
-                },
-                {
-                    "name" : "Financial Modeling",
-                    "picture" : "./static/charts.png",
-                    "description" : "I use the fundamental understanding we developed during risk assessment and review of 10-K to model interest expense.",
+                    "description" : `Processes should be monitored for opportunities to innovate. 
+                    I have written Python scripts and created Power BI routines to automate administrative tasks and testwork procedures to reduce client-billed expenses.`,
                     "showcase" : true
                 },
             ]
