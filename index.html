@@ -350,20 +350,25 @@
             padding: 10px;
         }
         .educationCard h3 {
-            font-size: 1.25em;
+            font-size: 1.15em;
+            margin-top: 5px;
             margin-bottom: 5px;
             color: inherit;
             font-weight: lighter;
         }
-        .educationCard h4 {
+        .educationCard ul li {
             font-size: .85em;
             font-weight: lighter;
             color: inherit;
         }
         .educationCard .educationDate {
-            position:absolute; top: 14px; right: 10px;
-            font-size: .95em; color: var(--secondaryFontColor);
+            position:absolute; top: 20px; right: 10px;
+            font-size: .85em; color: var(--secondaryFontColor);
             color: inherit;
+        }
+
+        .interestItem {
+            margin-top: 10px;
         }
 
 
@@ -442,6 +447,11 @@
 
 
         /* Media Queries */
+        @media (max-width: 1065px) {
+            .educationCard .educationDate {
+                display: none;
+            }
+        }
         @media (max-width: 550px) {
             nav ul li {
                 margin-right: 12px;
@@ -465,7 +475,7 @@
             }
             #educationAndInterests {
                 grid-template-columns: 1fr;
-                row-gap: 80px;
+                row-gap: 25px;
             }
             .educationCard {
                 width: 100%;
@@ -476,16 +486,14 @@
             .educationCard h4 {
                 font-size: .85em;
             }
-            .educationCard .educationDate {
-                display: none;
-            }
+            
         }
 
     </style>
 </head>
 <body>
 
-<div id="app" :class="darkTheme ? 'darkThemeBackground' : ''" class="themeSwap" >
+<div id="app" :class="darkTheme ? 'darkThemeBackground' : ''" class="themeSwap">
 
     <div style="width: 97%;margin: auto;">
         <nav>
@@ -510,8 +518,8 @@
                 </blockquote>
             </div>
             <div class="headshotContainer">
-                <div class="circle1 rellax" data-rellax-speed="-2"></div>
-                <div class="circle2 rellax" data-rellax-speed="2"></div>
+                <div class="circle1 rellax" data-rellax-speed="-1"></div>
+                <div class="circle2 rellax" data-rellax-speed="1"></div>
             </div>
         </section>
 
@@ -521,7 +529,13 @@
                 <div class="experienceCard" v-for="experience in experiences">
                     <h3 class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">{{ experience.title }}</h3>
                     <h4>{{ experience.company }} | {{ experience.location }} | {{ experience.timeframe }}</h4>
-                    <p class="experienceSummary themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''" v-html="experience.summary"></p>
+                    <p class="experienceSummary themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
+                        <span v-if="!experience.expanded" v-html="experience.summary.slice(0, experience.minimizedLength) + '...' "></span>
+                        <span v-else v-html="experience.summary"></span>
+
+                        <span v-if="!experience.expanded" @click="experience.expanded = !experience.expanded" style="margin-left: 10px;cursor: pointer;">See More</span>
+                        <span v-else @click="experience.expanded = !experience.expanded" style="margin-left: 10px;cursor: pointer;">See Less</span>
+                    </p>
                     <div class="skillsAcquiredContainer">
                         <p class="themeSwap" :class="darkTheme ? 'darkThemeSkillsAcquired' : ''" v-for="skill in experience.skillsAcquired">
                             {{ skill }}
@@ -552,9 +566,12 @@
                     <img src="./static/cba.jpg">
                     <div class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
                         <h3>California Board of Accountancy</h3>
-                        <h4>Candidate of the Uniform CPA exam</h4>
-                        <h4>Licensure in progress</h4>
+                        <ul>
+                            <li>Candidate of the Uniform CPA exam</li>
+                            <li>Licensure in progress</li>
+                        </ul>
                     </div>
+                    <p class="educationDate">Expected License: Jul. 2021</p>
                 </div>
                 <div class="educationCard">
                     <img style="height: 90px;align-self: center;" src="./static/sdsu.png">
@@ -564,14 +581,15 @@
                             <li>B.S. in Business Administration with a focus in Accounting</li>
                             <li>Minor in Management Information System</li>
                         </ul>
-                        <!-- <h4>B.S. in Business Administration with a focus in Accounting</h4>
-                        <h4>Minor in Management Information System</h4> -->
                         <p class="educationDate">Aug. 2015 - May 2019</p>
                     </div>
                 </div>
             </div>
             <div id="interests">
-                <h2 class="sectionHeader themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''"></h2>
+                <h2 class="sectionHeader themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Interests</h2>
+                <ul style="margin-top: 15px;">
+                    <li class="themeSwap interestItem" :class="darkTheme ? 'darkThemeFontColor' : ''" v-for="interest in interests" v-html="interest"></li>
+                </ul>
             </div>
         </section>
     </div>
@@ -601,57 +619,77 @@
             frame: 1,
             experiences: [
                 {
-                    "title"   : "Audit Associate",
+                    "title"   : "Experienced Audit Associate",
                     "company" : "KPMG",
                     "location": "Los Angeles",
                     "timeframe" : "August 2019 - Current",
-                    "summary" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec purus neque, aliquet pellentesque malesuada ac, consequat id sapien. In ultrices metus sit amet pellentesque dictum. Curabitur in tempus leo. In quis fermentum diam. Morbi eget vehicula urna, euismod egestas elit. In felis libero, fringilla eget augue ac, scelerisque lacinia elit. Nulla tincidunt odio vel commodo varius. Integer a tincidunt leo, eu iaculis odio. Mauris convallis scelerisque massa quis malesuada. Phasellus urna enim, posuere in cursus convallis, tempor eget purus. Fusce vitae metus in tortor tempus imperdiet. Fusce laoreet purus eget turpis iaculis, eget lacinia massa varius.",
-                    "skillsAcquired" : ["Financial Accounting", "Trend and Variance Analysis", "10-K and 10-Q Analysis"]
+                    "summary" : `
+                        As an audit associate in the Los Angeles practice, I have experience providing audit services to large private and public Financial Service companies. 
+                        The opportunity to work directly with upper level management has helped cultivate strong verbal and written communication skills. Additionally, as part of our year-end audits,
+                        the audit team works diligently to meet deadlines by appropriately allocating our time between material gathering, technical research and documentation and manager review.
+                        My proudest achievements at the firm have been owning and managing the audit services over a bank's deposit portfolio, driving KPMG's digital transformation effort on a national level,
+                        and designing scripts and routines to automate repetitive tasks thereby reducing hours spent working and charged. Transferrable skills from this position
+                        includes adept financial statement analysis, detail-oriented & questioning mindset, and deadline driven work ethic. 
+                    `,
+                    "skillsAcquired" : ["10-K Analysis", "Ad-Hoc Reporting", "Financial Accounting", "Technology Implementation", "Trend Analysis", "Variance Analysis", ],
+                    "expanded" : false,
+                    "minimizedLength": 750,
                 },
                 {
                     "title"   : "Resident Advisor",
                     "company" : "San Diego State University",
                     "location": "San Diego",
                     "timeframe" : "Sep. 2016 - May 2018",
-                    "summary" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec purus neque, aliquet pellentesque malesuada ac, consequat id sapien. In ultrices metus sit amet pellentesque dictum. Curabitur in tempus leo. In quis fermentum diam. Morbi eget vehicula urna, euismod egestas elit. In felis libero, fringilla eget augue ac, scelerisque lacinia elit. Nulla tincidunt odio vel commodo varius. Integer a tincidunt leo, eu iaculis odio. Mauris convallis scelerisque massa quis malesuada. Phasellus urna enim, posuere in cursus convallis, tempor eget purus. Fusce vitae metus in tortor tempus imperdiet. Fusce laoreet purus eget turpis iaculis, eget lacinia massa varius.",
-                    "skillsAcquired" : ["Critical Thinking", "Conflict Resolution", "Public Speaking"]
+                    "summary" : `
+                        
+                    `,
+                    "skillsAcquired" : ["Budget Management", "Conflict Resolution", "Critical Thinking", "Verbal Communication"],
+                    "expanded" : false,
+                    "minimizedLength": 500,
                 },
                 {
                     "title"   : "Business Development Supervisor",
                     "company" : "CourseKey",
                     "location": "San Diego",
                     "timeframe" : "Feb. 2016 - May 2016",
-                    "summary" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec purus neque, aliquet pellentesque malesuada ac, consequat id sapien. In ultrices metus sit amet pellentesque dictum. Curabitur in tempus leo. In quis fermentum diam. Morbi eget vehicula urna, euismod egestas elit. In felis libero, fringilla eget augue ac, scelerisque lacinia elit. Nulla tincidunt odio vel commodo varius. Integer a tincidunt leo, eu iaculis odio. Mauris convallis scelerisque massa quis malesuada. Phasellus urna enim, posuere in cursus convallis, tempor eget purus. Fusce vitae metus in tortor tempus imperdiet. Fusce laoreet purus eget turpis iaculis, eget lacinia massa varius.",
-                    "skillsAcquired" : ["Financial Accounting", "Trend and Variance Analysis", "10-K and 10-Q Analysis"]
+                    "summary" : `
+                        
+                    `,
+                    "skillsAcquired" : ["Change Management", "Cross-functional Collaboration", "Data Analysis", "Data Collection"],
+                    "expanded" : false,
+                    "minimizedLength": 500,
                 },
             ],
             skills: [
                 {
                     "name" : "Microsoft Excel",
                     "picture" : "./static/excel.svg",
-                    "description" : `My primary uses of excel are to clean and prepare data for analysis, create models and reports to provide succinct, high-level summaries, and organize and validate data.`,
+                    "description" : `My primary uses of excel are to clean and prepare data for analysis, create models and reports to provide succinct, high-level summaries, and organize and validate data. Capable of 
+                    creating and maintaining complex schedules.`,
                     "showcase" : false
                 },
                 {
                     "name" : "Power BI",
-                    "picture" : "./static/powerbi.svg",
+                    "picture" : "./static/powerBI.svg",
                     "description" : `I enjoy using Power BI for exploratory data analysis and project management & KPI monitoring. I appreciate the intuitive dashboard interface and how easy it is to create dynamic dashboards.`,
                     "showcase" : false
                 },
                 {
                     "name" : "Python",
                     "picture" : "./static/python.svg",
-                    "description" : `My Python area of expertise lies in automation scripts, data manipulation & analysis, and data collection through web scraping. See some business use cases I have implemented at my previous jobs.`,
+                    "description" : `My Python area of expertise lies in ad-hoc data manipulation & analysis, automation scripts, and data collection through web scraping. See some business use cases I have implemented at my previous jobs.`,
                     "showcase" : true
                 },
                 {
                     "name" : "Automation",
                     "picture" : "./static/automation.png",
-                    "description" : `Processes should be monitored for opportunities to innovate. 
-                    I have written Python scripts and created Power BI routines to automate administrative tasks and testwork procedures to reduce client-billed expenses.`,
+                    "description" : `Have written Python scripts and created Power BI routines to automate administrative tasks and testwork procedures to reduce client-incurred expenses.`,
                     "showcase" : true
                 },
-            ]
+            ],
+            interests: [
+                "Basketball - New Orleans Pelicans", "Investing - Equities", "Photography - GIMP", "Web Development - HTML, Python, Vue.js"
+            ],
         }
     })
 </script>
