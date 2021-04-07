@@ -432,6 +432,10 @@
             border: 1px solid var(--darkThemeFontColor) !important;
             color: var(--darkThemeFontColor) !important;
         }
+        .darkThemeSkillCard {
+            border: 1px solid var(--darkThemeFontColor) !important;
+            color: var(--darkThemeFontColor) !important;
+        }
         
 
         /* Transitions and Animations */
@@ -481,7 +485,7 @@
                 width: 100%;
             }
             .educationCard h3 {
-                font-size: .95em;
+                font-size: 1.15em;
             }
             .educationCard h4 {
                 font-size: .85em;
@@ -548,7 +552,7 @@
         <section class="content" id="skills">
             <h2 class="sectionHeader themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Tools &amp; Skills</h2>
             <div class="skillsContainer">
-                <div v-for="skill in skills" class="skillCard">
+                <div v-for="skill in skills" class="skillCard" :class="darkTheme ? 'darkThemeSkillCard' : ''"> 
                     <h3 class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">{{ skill.name }}</h3>
                     <img :src="skill.picture">
                     <p class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''" v-html="skill.description">
@@ -563,7 +567,9 @@
                 <h2 class="sectionHeader themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Certifications &amp; Education</h2>
                 <br>
                 <div class="educationCard">
-                    <img src="./static/cba.jpg">
+                    <img v-if="!darkTheme" style="height:90px;align-self: center;" src="./static/cba.jpg">
+                    <img v-else style="height:90px;align-self: center;filter: grayscale(50%);" src="./static/cbaDarkMode.png">
+
                     <div class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
                         <h3>California Board of Accountancy</h3>
                         <ul>
@@ -574,7 +580,9 @@
                     </div>
                 </div>
                 <div class="educationCard">
-                    <img style="height: 90px;align-self: center;" src="./static/sdsu.png">
+                    <img v-if="!darkTheme" style="transform: scale(.9);height:95px;align-self: center;" src="./static/sdsu.png">
+                    <img v-else style="transform:scale(.9);height:100%;align-self: center;" src="./static/sdsuDarkMode.png">
+
                     <div class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
                         <h3>San Diego State University</h3>
                         <ul>
@@ -626,11 +634,11 @@
                     "summary" : `
                         As an audit associate in the Los Angeles practice, I have experience providing audit services to large private and public Financial Service companies. 
                         The opportunity to work directly with upper level management has helped cultivate strong verbal and written communication skills. Additionally, as part of our year-end audits,
-                        the audit team works diligently to meet deadlines by appropriately allocating our time between material gathering, technical research and documentation and manager review.
+                        the audit team works diligently to meet deadlines by appropriately allocating our time between material gathering, technical research & documentation, and manager review.
                         <br><br>
                         My proudest achievements at the firm have been owning and managing the audit services over a bank's deposit portfolio, driving KPMG's digital transformation effort on a national level,
                         and designing scripts and routines to automate repetitive tasks thereby reducing hours spent working and charged. Transferrable skills from this position
-                        includes adept financial statement analysis, detail-oriented & questioning mindset, and deadline driven work ethic. 
+                        includes adept financial statement analysis in a variety of tools (i.e., Python and Excel), detail-oriented & questioning mindset, and deadline driven work ethic. 
                     `,
                     "skillsAcquired" : ["10-K Analysis", "Ad-Hoc Reporting", "Financial Accounting", "Technology Implementation", "Trend Analysis", "Variance Analysis", ],
                     "expanded" : false,
@@ -645,7 +653,7 @@
                         The opportunity to work as a Resident Advisor (RA) during my undergraduate degree contributed heavily to how I approach team dynamics and communication. 
                         My position as an RA has strengthened my communication habits (e.g., active listening) by allowing me to work with residents and fellow RA's with different
                         communication styles. Additionally, for the two academic year's as an RA, I have hosted 30+ programs within allocated budgets. Transferrable skills from this position
-                        includes critical thinking under duress, team player mindset, and verbal communication. 
+                        are critical thinking under duress and strong verbal communication.
                     `,
                     "skillsAcquired" : ["Budget Management", "Conflict Resolution", "Critical Thinking", "Verbal Communication"],
                     "expanded" : false,
@@ -659,7 +667,8 @@
                     "summary" : `
                         During my time at CourseKey, I was fortunate to work with highly motivated individuals and pick their brains. I primarily assisted with the 
                         data gathering and customer due diligence efforts to assist the sales team. I focused heavily on our customer relationship management databases (i.e., Salesforce and HubSpot)
-                        and spent most of my time researching our target customers' websites collecting information. Transferrable skills include research and data collection, 
+                        and spent most of my time researching our target customers' websites collecting information. Transferrable skills include data collection & due diligence and the ability to 
+                        communicate insights across functional teams.
                     `,
                     "skillsAcquired" : ["Cross-functional Collaboration", "Data Analysis", "Data Collection"],
                     "expanded" : false,
