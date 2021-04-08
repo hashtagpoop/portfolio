@@ -482,6 +482,11 @@
             color: var(--darkThemeFontColor) !important;
         }
 
+        .darkThemeModal {
+            background-color: #404553;
+            padding: 20px 30px;
+        }
+
         .darkThemeFooter {
             background-color: #404553;
         }
@@ -634,27 +639,30 @@
             </transition>
 
             <transition name="fade">
-                <div class="modal pythonModal" v-if="skills.filter(obj => {return obj.name == 'Python'})[0].modalShowing" v-cloak>
-                    <span @click="closeModals" style="position: absolute;top: 5px; right:15px;cursor: pointer;padding:10px;font-size: 1.2em;">&#10006;</span>
+                <div class="modal pythonModal themeSwap" :class="darkTheme ? 'darkThemeModal' : ''" v-if="skills.filter(obj => {return obj.name == 'Python'})[0].modalShowing" v-cloak>
+
+                    <span class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''"
+                    @click="closeModals" style="position: absolute;top: 5px; right:15px;cursor: pointer;padding:10px;font-size: 1.2em;">&#10006;</span>
+
                     <div class="modalLeft themeSwap">
-                        <h2>Python Use Cases</h2>
+                        <h2 class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Python Use Cases</h2>
                         <br>
-                        <p v-html="skills.filter(obj => {return obj.name == 'Python'})[0].description"></p>
+                        <p class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''" v-html="skills.filter(obj => {return obj.name == 'Python'})[0].description"></p>
                         <br>
-                        <p>
+                        <p class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
                             As an auditor, our primary responsibility is to understanding our client's business, identify the high risk areas,
                             and design procedures to evaluate whether there are any areas of weakness or if there are any financial misstatements. We document 
                             our risk analysis and procedures in our audit software and send it for manager & partner review. 
                         </p>
                         <br>
-                        <p>
+                        <p class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
                             As one might expect, a large public company will have many processes, each of which have their own respective risks. As a result, navigating and reviewing
                             all the risks within a process can be a headache. Luckily, our audit software consolidates our documentation into one excel file, see <b>Exhibit #1</b>. 
                             I saw an opportunity to create a tool that would allow a reviewer to understand our documentation more naturally.
                             In this example, I have included three risks, but in a typical process there can be anywhere from 10-30 risks.
                         </p>
                         <br>
-                        <p>
+                        <p class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
                             My solution was to create a report generator that reads in the excel file, and structures the information into a more legible format. 
                             Each row in the excel had been turned into an individual page, and each risk is accounted for within a side panel. The project creation consumed 4 hours, and resulted in
                             in a tool that can be re-used across any team and any process. The report is dynamic, see <b>Exhibit #2</b>, and can be sent as a standalone file 
@@ -664,11 +672,11 @@
                     </div>
 
                     <div class="modalRight themeSwap">
-                        <h2>Exhibit #1</h2>
+                        <h2 class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Exhibit #1</h2>
                         <img src="./static/raarExample.png">
                         <br><br>
-                        <h2>Exhibit #2</h2>
-                        <video autoplay muted loop>
+                        <h2 class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Exhibit #2</h2>
+                        <video autoplay muted loop playsinline>
                             <source src="./static/raarDemonstration.mp4" type="video/mp4">
                         </video>
                     </div>
