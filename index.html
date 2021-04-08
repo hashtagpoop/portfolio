@@ -17,10 +17,21 @@
             scroll-behavior: smooth;
         }
 
+        [v-cloak] {display: none}
+
         body {
             padding: 0;
             margin: 0;
             font-family: 'Lora', serif;
+        }
+
+        *::-webkit-scrollbar {
+            display: none;            
+        }
+
+        * {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
         :root {
@@ -324,6 +335,40 @@
             cursor: pointer;
         }
 
+        .modalBackdrop {
+            position: fixed;
+            background:rgba(39, 39, 39, 0.39);
+            width: 100vw; height: 100vh;
+            top: 0; left: 0; cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal {
+            position: fixed;
+            width: 95vw; height: 95vh;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            z-index: 11;
+            padding: 20px; 
+            box-sizing: border-box;
+            display: grid; 
+            grid-template-columns: 4fr 6fr; 
+            column-gap: 30px;
+            box-shadow: 0 2px 5px -4px rgb(0 0 0 / 30%);
+            border-radius: 3px;
+        }
+        .modal img, .modal video {
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px -4px rgb(0 0 0 / 30%);
+        }
+        .modalLeft, .modalRight {
+            padding-bottom: 50px;
+            overflow: auto;
+        }
+
+
         /* Certifications and Interests */
         #educationAndInterests {
             display: grid;
@@ -436,17 +481,21 @@
             border: 1px solid var(--darkThemeFontColor) !important;
             color: var(--darkThemeFontColor) !important;
         }
+
+        .darkThemeFooter {
+            background-color: #404553;
+        }
+        .darkThemeFooter::before {
+            background: linear-gradient( 175deg, rgba(0,0,0,0) 46%, #404553 0);
+        }
         
 
         /* Transitions and Animations */
-        .fade-enter-active,
-        .fade-leave-active {
-        transition: opacity 0.5s ease;
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s;
         }
-
-        .fade-enter-from,
-        .fade-leave-to {
-        opacity: 0;
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
         }
 
 
@@ -454,6 +503,23 @@
         @media (max-width: 1065px) {
             .educationCard .educationDate {
                 display: none;
+            }
+        }
+        @media (max-width: 750px) {
+            .modal {
+                grid-template-columns: 1fr;
+                row-gap:20px;
+                overflow: auto;
+            }
+            .modalLeft {
+                overflow: unset;
+            }
+            .modalRight {
+                height: 500px;
+            }
+            .modal img, .modal video {
+                width: 100%;
+                max-width: unset;
             }
         }
         @media (max-width: 550px) {
@@ -490,7 +556,6 @@
             .educationCard h4 {
                 font-size: .85em;
             }
-            
         }
 
     </style>
@@ -537,8 +602,10 @@
                         <span v-if="!experience.expanded" v-html="experience.summary.slice(0, experience.minimizedLength) + '...' "></span>
                         <span v-else v-html="experience.summary"></span>
 
-                        <span v-if="!experience.expanded" @click="experience.expanded = !experience.expanded" style="margin-left: 10px;cursor: pointer;">See More</span>
-                        <span v-else @click="experience.expanded = !experience.expanded" style="margin-left: 10px;cursor: pointer;">See Less</span>
+                        <br><br>
+
+                        <span v-if="!experience.expanded" @click="experience.expanded = !experience.expanded" style="cursor: pointer;">See More</span>
+                        <span v-else @click="experience.expanded = !experience.expanded" style="cursor: pointer;">See Less</span>
                     </p>
                     <div class="skillsAcquiredContainer">
                         <p class="themeSwap" :class="darkTheme ? 'darkThemeSkillsAcquired' : ''" v-for="skill in experience.skillsAcquired">
@@ -557,9 +624,56 @@
                     <img :src="skill.picture">
                     <p class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''" v-html="skill.description">
                     </p>
-                    <button v-if="skill.showcase">Use Case</button>
+                    <button v-if="skill.showcase" @click="skill.modalShowing = !skill.modalShowing; isModalVisible = true">Use Case</button>
                 </div>
             </div>
+
+            <!-- Modals -->
+            <transition name="fade">
+                <div class="modalBackdrop" @click="closeModals" v-if="skills.filter(obj => {return obj.modalShowing == true}).length > 0" v-cloak></div>
+            </transition>
+
+            <transition name="fade">
+                <div class="modal pythonModal" v-if="skills.filter(obj => {return obj.name == 'Python'})[0].modalShowing" v-cloak>
+                    <span @click="closeModals" style="position: absolute;top: 5px; right:15px;cursor: pointer;padding:10px;font-size: 1.2em;">&#10006;</span>
+                    <div class="modalLeft themeSwap">
+                        <h2>Python Use Cases</h2>
+                        <br>
+                        <p v-html="skills.filter(obj => {return obj.name == 'Python'})[0].description"></p>
+                        <br>
+                        <p>
+                            As an auditor, our primary responsibility is to understanding our client's business, identify the high risk areas,
+                            and design procedures to evaluate whether there are any areas of weakness or if there are any financial misstatements. We document 
+                            our risk analysis and procedures in our audit software and send it for manager & partner review. 
+                        </p>
+                        <br>
+                        <p>
+                            As one might expect, a large public company will have many processes, each of which have their own respective risks. As a result, navigating and reviewing
+                            all the risks within a process can be a headache. Luckily, our audit software consolidates our documentation into one excel file, see <b>Exhibit #1</b>. 
+                            I saw an opportunity to create a tool that would allow a reviewer to understand our documentation more naturally.
+                            In this example, I have included three risks, but in a typical process there can be anywhere from 10-30 risks.
+                        </p>
+                        <br>
+                        <p>
+                            My solution was to create a report generator that reads in the excel file, and structures the information into a more legible format. 
+                            Each row in the excel had been turned into an individual page, and each risk is accounted for within a side panel. The project creation consumed 4 hours, and resulted in
+                            in a tool that can be re-used across any team and any process. The report is dynamic, see <b>Exhibit #2</b>, and can be sent as a standalone file 
+                            through email. The value delivered from this report is the ability to review each risk in isolation and track which risks have 
+                            already been reviewed.
+                        </p>
+                    </div>
+
+                    <div class="modalRight themeSwap">
+                        <h2>Exhibit #1</h2>
+                        <img src="./static/raarExample.png">
+                        <br><br>
+                        <h2>Exhibit #2</h2>
+                        <video autoplay muted loop>
+                            <source src="./static/raarDemonstration.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </transition>
         </section>
 
         <section id="educationAndInterests" class="content">
@@ -580,8 +694,8 @@
                     </div>
                 </div>
                 <div class="educationCard">
-                    <img v-if="!darkTheme" style="transform: scale(.9);height:95px;align-self: center;" src="./static/sdsu.png">
-                    <img v-else style="transform:scale(.9);height:100%;align-self: center;" src="./static/sdsuDarkMode.png">
+                    <img v-if="!darkTheme" style="transform: scale(.9);align-self: center;" src="./static/sdsu.png">
+                    <img v-else style="transform:scale(.8);height:110px;align-self: center;" src="./static/sdsuDarkMode.png">
 
                     <div class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">
                         <h3>San Diego State University</h3>
@@ -601,7 +715,8 @@
             </div>
         </section>
     </div>
-    <footer>
+
+    <footer class="themeSwap" :class="darkTheme ? 'darkThemeFooter' : ''">
         <h2>Let's Connect</h2>
         <hr style="height: 3px; width: 100px; background-color: white;">
         <div class="contactInfo">
@@ -625,6 +740,7 @@
         data: {
             darkTheme: false,
             frame: 1,
+            isModalVisible: false,
             experiences: [
                 {
                     "title"   : "Experienced Audit Associate",
@@ -650,14 +766,15 @@
                     "location": "San Diego",
                     "timeframe" : "Sep. 2016 - May 2018",
                     "summary" : `
-                        The opportunity to work as a Resident Advisor (RA) during my undergraduate degree contributed heavily to how I approach team dynamics and communication. 
-                        My position as an RA has strengthened my communication habits (e.g., active listening) by allowing me to work with residents and fellow RA's with different
-                        communication styles. Additionally, for the two academic year's as an RA, I have hosted 30+ programs within allocated budgets. Transferrable skills from this position
+                        The opportunity to work as a Resident Advisor (RA) during my undergraduate degree contributed heavily to how I approach team dynamics. 
+                        My position as an RA has strengthened my communication habits (e.g., active listening) as I worked with 60+ residents and fellow RA's with different
+                        communication styles. Over the span of two years, I was encouraged to wear different hats across multiple teams and serve different roles to aid each resident's undergraduate 
+                        journey. Additionally, for the two academic year's as an RA, I have hosted 30+ successful programs within budget constraints. Transferrable skills from this position
                         are critical thinking under duress and strong verbal communication.
                     `,
                     "skillsAcquired" : ["Budget Management", "Conflict Resolution", "Critical Thinking", "Verbal Communication"],
                     "expanded" : false,
-                    "minimizedLength": 500,
+                    "minimizedLength": 490,
                 },
                 {
                     "title"   : "Business Development Supervisor",
@@ -667,7 +784,8 @@
                     "summary" : `
                         During my time at CourseKey, I was fortunate to work with highly motivated individuals and pick their brains. I primarily assisted with the 
                         data gathering and customer due diligence efforts to assist the sales team. I focused heavily on our customer relationship management databases (i.e., Salesforce and HubSpot)
-                        and spent most of my time researching our target customers' websites collecting information. Transferrable skills include data collection & due diligence and the ability to 
+                        and spent most of my time researching our target customers' websites collecting information. As the role was recently introduced to the Company, I independently 
+                        established routines to assist the company's growth. Transferrable skills include data collection & due diligence and the ability to 
                         communicate insights across functional teams.
                     `,
                     "skillsAcquired" : ["Cross-functional Collaboration", "Data Analysis", "Data Collection"],
@@ -680,35 +798,57 @@
                     "name" : "Microsoft Excel",
                     "picture" : "./static/excel.svg",
                     "description" : `My primary uses of excel are to clean and prepare data for analysis, 
-                                    create models and reports to provide succinct, high-level summaries, 
-                                    and organize and validate data. Capable of 
-                    creating and maintaining complex schedules.`,
-                    "showcase" : false
+                                    create models & reports to provide succinct, high-level summaries, 
+                                    and organize & validate data. Capable of 
+                    creating and maintaining complex schedules to support financial analysis.`,
+                    "showcase" : false,
+                    "modalShowing" : false
                 },
                 {
                     "name" : "Power BI",
                     "picture" : "./static/powerBI.svg",
                     "description" : `I use Power BI for exploratory data analysis and project management & KPI monitoring. 
                                     Additionally, Power BI is effective for creating re-usable routines that help visualize each step of the data loading and cleaning process.`,
-                    "showcase" : false
+                    "showcase" : false,
+                    "modalShowing" : false
                 },
                 {
                     "name" : "Python",
                     "picture" : "./static/python.svg",
-                    "description" : `My Python area of expertise lies in ad-hoc data manipulation & analysis, automation scripts, 
-                                    and data collection through web scraping. See some business use cases I have implemented at my previous experiences.`,
-                    "showcase" : true
+                    "description" : `My Python areas of expertise lie in ad-hoc data manipulation & analysis, automation scripts, 
+                                    and data collection via web scraping. See a business use case I have implemented at my previous experience.`,
+                    "showcase" : true,
+                    "modalShowing" : false
                 },
                 {
                     "name" : "Automation",
                     "picture" : "./static/automation.png",
                     "description" : `Have written Python scripts and created Power BI routines to automate administrative tasks and testwork procedures to reduce client-incurred expenses.`,
-                    "showcase" : true
+                    "showcase" : false,
+                    "modalShowing" : false
                 },
             ],
             interests: [
                 "Basketball - New Orleans Pelicans", "Investing - Equities", "Photography - GIMP", "Web Development - HTML, Python, Vue.js"
             ],
+        },
+        methods: {
+            closeModals: function() {
+                for (i=0; i < this.skills.length; i++) {
+                    this.skills[i].modalShowing = false;
+                };
+                this.isModalVisible = false;
+            }
+        },
+        watch:{
+            isModalVisible: function() {
+                if(this.isModalVisible){
+                    document.documentElement.style.overflow = 'hidden'
+                    return
+                }
+
+                document.documentElement.style.overflow = 'auto'
+            }
         }
     })
 </script>
@@ -718,4 +858,6 @@
         center:false
     });
 </script>
+
+
 </body>
