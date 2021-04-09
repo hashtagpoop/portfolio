@@ -645,7 +645,7 @@
                     <span class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''"
                     @click="closeModals" style="position: absolute;top: 5px; right:15px;cursor: pointer;padding:10px;font-size: 1.2em;">&#10006;</span>
 
-                    <div class="modalLeft themeSwap">
+                    <div class="modalLeft themeSwap" v-cloak>
                         <h2 class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Python Use Cases</h2>
                         <br>
                         <p class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''" v-html="skills.filter(obj => {return obj.name == 'Python'})[0].description"></p>
@@ -674,7 +674,7 @@
                         </p>
                     </div>
 
-                    <div class="modalRight themeSwap">
+                    <div class="modalRight themeSwap" v-cloak>
                         <h2 class="themeSwap" :class="darkTheme ? 'darkThemeFontColor' : ''">Exhibit #1</h2>
                         <img src="./static/raarExample.png">
                         <br><br>
