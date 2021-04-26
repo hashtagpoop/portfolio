@@ -51,7 +51,7 @@
         --lightBackground: rgb(255, 255, 255);
         --primaryFontColor: rgb(39, 39, 39);
         --secondaryFontColor: rgb(104, 104, 104);
-        --lighterFontColor: rgb(185, 185, 185);
+        --lighterFontColor: rgb(131, 131, 131);
         --darkThemeFontColor: rgb(255, 255, 255);
         --primaryColor: #3e76e3;
         --secondaryColor: #68aff6;
@@ -737,7 +737,7 @@
             <div
               class="modalBackdrop"
               @click="closeModals"
-              v-show="skills.filter(obj => {return obj.modalShowing == true}).length > 0"
+              v-if="skills.filter(obj => {return obj.modalShowing == true}).length > 0"
               v-cloak
             ></div>
           </transition>
@@ -746,7 +746,7 @@
             <div
               class="modal pythonModal themeSwap"
               :class="darkTheme ? 'darkThemeModal' : ''"
-              v-show="skills.filter(obj => {return obj.name == 'Python'})[0].modalShowing"
+              v-if="skills.filter(obj => {return obj.name == 'Python'})[0].modalShowing"
               v-cloak
             >
               <span
