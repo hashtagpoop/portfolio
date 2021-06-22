@@ -28,6 +28,7 @@
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&family=Lora&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./static/favicon.ico" />
     <link rel="apple-touch-icon" href="./static/apple-touch-icon.png" />
     <title>Welcome | Ruoyu Chen</title>
@@ -64,7 +65,7 @@
         --darkBackground: rgb(39, 39, 39);
         --lightBackground: rgb(255, 255, 255);
         --primaryFontColor: rgb(39, 39, 39);
-        --secondaryFontColor: rgb(104, 104, 104);
+        --secondaryFontColor: rgb(80, 80, 80);
         --lighterFontColor: rgb(131, 131, 131);
         --darkThemeFontColor: rgb(255, 255, 255);
         --primaryColor: #3e76e3;
@@ -98,6 +99,11 @@
 
       .sectionHeader {
         position: relative;
+        font-family: 'Catamaran', sans-serif;
+        font-size: 40px;
+        color: var(--lighterFontColor);
+        letter-spacing: 2;
+        opacity: .8;
       }
 
       .emphasisColor {
@@ -660,7 +666,7 @@
             class="sectionHeader themeSwap"
             :class="darkTheme ? 'darkThemeFontColor' : ''"
           >
-            Experience & Acquired Skills
+            Experience
           </h2>
           <div class="experienceContainer">
             <div class="experienceCard" v-for="experience in experiences">
@@ -871,7 +877,7 @@
               class="sectionHeader themeSwap"
               :class="darkTheme ? 'darkThemeFontColor' : ''"
             >
-              Certifications &amp; Education
+              Education
             </h2>
             <br />
             <div class="educationCard">
@@ -973,9 +979,9 @@
               title: "Experienced Audit Associate",
               company: "KPMG",
               location: "Los Angeles",
-              timeframe: "August 2019 - Current",
+              timeframe: "August 2019 - June 2021",
               summary: `
-                        As an audit associate in the Los Angeles practice, I have experience providing audit services to large private and public Financial Service companies. 
+                        As an audit associate in the Los Angeles practice, I have experience providing audit services to large private and public Financial Services companies. 
                         The opportunity to work directly with upper level management has helped cultivate strong verbal and written communication skills. Additionally, as part of our year-end audits,
                         the audit team works diligently to meet deadlines by appropriately allocating our time between material gathering, technical research & documentation, and manager review.
                         <br><br>
