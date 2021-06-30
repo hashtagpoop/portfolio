@@ -44,6 +44,7 @@
         padding: 0;
         margin: 0;
         background-color: #f2f6f9;
+        font-family: "Catamaran", "serif";
       }
 
       * {
@@ -70,7 +71,7 @@
       }
 
       .page-content {
-        width: 90%;
+        width: 80%;
         margin: auto;
       }
 
@@ -87,6 +88,7 @@
         color: var(--grey);
         font-size: 1.05em;
         font-family: "Barlow Condensed", serif;
+        letter-spacing: 1px;
       }
 
       .blog-post {
@@ -116,10 +118,15 @@
         letter-spacing: 1px;
       }
 
+      .post-title {
+        font-family: "Lora", "serif";
+      }
+
       .post-preview {
         margin-top: 15px;
         font-size: 1.2em;
         line-height: 1.4;
+        font-family: "Lora", "serif";
       }
 
       .blog-post footer {
@@ -138,7 +145,7 @@
 
       .blog-row {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         column-gap: 30px;
       }
 
@@ -146,13 +153,14 @@
         padding: 0;
         display: grid;
         grid-template-columns: 6fr 3fr;
-        height: 400px;
+        min-height: 400px;
       }
 
       .large-post .post-image {
         width: 100%;
         object-fit: cover;
-        height: inherit;
+        height: 100%;
+        min-height: 400px;
       }
 
       .large-post .post-content {
@@ -162,7 +170,7 @@
       .large-post footer {
         padding: 0;
         width: 100%;
-        margin-top: 100px;
+        margin-top: 250px;
       }
 
       .tall-post .post-image {
@@ -182,10 +190,31 @@
         margin-top: 30px;
         text-align: center;
       }
+
+      /* Media Queries */
+      @media (max-width: 1065px) {
+        .page-content {
+          width: 90%;
+        }
+        .large-post footer {
+          margin-top: 50px;
+        }
+      }
+      @media (max-width: 750px) {
+        .large-post .post-image {
+          min-height: 250px;
+        }
+        .large-post {
+          padding: 0;
+          display: block;
+        }
+      }
+      @media (max-width: 550px) {
+      }
     </style>
   </head>
   <body>
-    <div class="banner">
+    <div class="banner" id="app">
       <img
         src="static/favicon.ico"
         style="display: inline; vertical-align: middle"
@@ -193,7 +222,7 @@
       <h1 style="display: inline; vertical-align: middle; margin-left: 15px">
         Blog Posts
       </h1>
-      <h2>Python and Excel tutorials</h2>
+      <h2 style="font-family: system-ui">Python and Excel tutorials</h2>
     </div>
     <section class="page-content">
       <ul class="post-filters-list">
