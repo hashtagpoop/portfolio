@@ -86,6 +86,7 @@
         list-style-type: none;
         color: var(--grey);
         font-size: 1.05em;
+        font-family: "Barlow Condensed", serif;
       }
 
       .blog-post {
@@ -95,7 +96,6 @@
         box-shadow: 8px 14px 38px rgb(39 44 49 / 6%),
           1px 3px 8px rgb(39 44 49 / 3%);
         transition: all 0.5s ease;
-        padding: 20px;
         overflow: hidden;
       }
 
@@ -112,6 +112,8 @@
         margin-bottom: 5px;
         color: rgb(87, 87, 87);
         text-transform: uppercase;
+        font-family: "Barlow Condensed", serif;
+        letter-spacing: 1px;
       }
 
       .post-preview {
@@ -123,7 +125,7 @@
       .blog-post footer {
         display: flex;
         justify-content: space-between;
-        margin-top: 20px;
+        padding: 10px 20px 20px 20px;
       }
 
       .blog-post footer p {
@@ -157,11 +159,28 @@
         padding: 30px;
       }
 
+      .large-post footer {
+        padding: 0;
+        width: 100%;
+        margin-top: 100px;
+      }
+
+      .tall-post .post-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .tall-post .post-content {
+        padding: 20px;
+      }
+
       .page-footer {
         background-color: black;
         padding: 100px 50px;
         color: var(--grey);
         margin-top: 30px;
+        text-align: center;
       }
     </style>
   </head>
@@ -208,89 +227,122 @@
           </div>
         </div>
 
-        <div class="blog-row three-posts">
+        <!-- Three Posts -->
+        <div class="blog-row">
           <div class="blog-post tall-post">
-            <img class="post-image" />
-            <ul class="post-tags-list">
-              <li>Pandas</li>
-            </ul>
-            <h2 class="post-title">
-              How to change or update a specific cell in Python Pandas
-            </h2>
-            <p class="post-preview">
-              Accessing a single value or updating the value of a single row is
-              sometimes...
-            </p>
+            <img
+              class="post-image"
+              src="static/blog-images/business-buildings.jpg"
+            />
+            <div class="post-content">
+              <ul class="post-tags-list">
+                <li>Pandas</li>
+              </ul>
+              <h2 class="post-title">
+                How to change or update a specific cell in Python Pandas
+              </h2>
+              <p class="post-preview">
+                Accessing a single value or updating the value of a single row
+                is sometimes...
+              </p>
+            </div>
             <footer>
               <img class="post-author" src="static/headshot.png" />
               <p>5 MIN READ</p>
             </footer>
           </div>
+
           <div class="blog-post tall-post">
-            <img class="post-image" />
-            <ul class="post-tags-list">
-              <li>Pandas</li>
-            </ul>
-            <h2 class="post-title">
-              How to change or update a specific cell in Python Pandas
-            </h2>
-            <p class="post-preview">
-              Accessing a single value or updating the value of a single row is
-              sometimes...
-            </p>
+            <img
+              class="post-image"
+              src="static/blog-images/business-buildings.jpg"
+            />
+            <div class="post-content">
+              <ul class="post-tags-list">
+                <li>Pandas</li>
+              </ul>
+              <h2 class="post-title">
+                How to change or update a specific cell in Python Pandas
+              </h2>
+              <p class="post-preview">
+                Accessing a single value or updating the value of a single row
+                is sometimes...
+              </p>
+            </div>
             <footer>
               <img class="post-author" src="static/headshot.png" />
               <p>5 MIN READ</p>
             </footer>
           </div>
+
           <div class="blog-post tall-post">
-            <img class="post-image" />
-            <ul class="post-tags-list">
-              <li>Pandas</li>
-            </ul>
-            <h2 class="post-title">
-              How to change or update a specific cell in Python Pandas
-            </h2>
-            <p class="post-preview">
-              Accessing a single value or updating the value of a single row is
-              sometimes...
-            </p>
+            <img
+              class="post-image"
+              src="static/blog-images/business-buildings.jpg"
+            />
+            <div class="post-content">
+              <ul class="post-tags-list">
+                <li>Pandas</li>
+              </ul>
+              <h2 class="post-title">
+                How to change or update a specific cell in Python Pandas
+              </h2>
+              <p class="post-preview">
+                Accessing a single value or updating the value of a single row
+                is sometimes...
+              </p>
+            </div>
             <footer>
               <img class="post-author" src="static/headshot.png" />
               <p>5 MIN READ</p>
             </footer>
           </div>
         </div>
-        <div class="blog-row two-cards">
+
+        <!-- Two Posts -->
+        <div class="blog-row">
           <div class="blog-post tall-post">
-            <img class="post-image" />
-            <ul class="post-tags-list">
-              <li>Pandas</li>
-            </ul>
-            <h2 class="post-title">
-              How to change or update a specific cell in Python Pandas
-            </h2>
-            <p class="post-preview">
-              Accessing a single value or updating the value of a single row is
-              sometimes...
-            </p>
+            <img
+              class="post-image"
+              style="height: 300px"
+              src="static/blog-images/taxes.jpg"
+            />
+            <div class="post-content">
+              <ul class="post-tags-list">
+                <li>Pandas</li>
+              </ul>
+              <h2 class="post-title">
+                How to change or update a specific cell in Python Pandas
+              </h2>
+              <p class="post-preview">
+                Accessing a single value or updating the value of a single row
+                is sometimes...
+              </p>
+            </div>
             <footer>
               <img class="post-author" src="static/headshot.png" />
               <p>5 MIN READ</p>
             </footer>
           </div>
+
           <div class="blog-post tall-post">
-            <img class="post-image" />
-            <ul class="post-tags-list">
-              <li>Pandas</li>
-            </ul>
-            <h2 class="post-title">
-              How to change or update a specific cell in Python Pandas
-            </h2>
-            <p class="post-preview">
-              Accessing a single value or updating the value of a single row is
-              sometimes...
-            </p>
+            <img
+              class="post-image"
+              style="height: 300px"
+              src="static/blog-images/taxes.jpg"
+            />
+            <div class="post-content">
+              <ul class="post-tags-list">
+                <li>Pandas</li>
+              </ul>
+              <h2 class="post-title">
+                How to change or update a specific cell in Python Pandas
+              </h2>
+              <p class="post-preview">
+                Accessing a single value or updating the value of a single row
+                is sometimes...
+              </p>
+            </div>
             <footer>
               <img class="post-author" src="static/headshot.png" />
               <p>5 MIN READ</p>
