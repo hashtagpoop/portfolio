@@ -114,6 +114,13 @@ const interests = ref([
             "Web Development - HTML, Python, Vue.js",
 ]);
 
+function closeModals () {
+    for (i = 0; i < this.skills.length; i++) {
+        this.skills[i].modalShowing = false;
+    }
+    this.isModalVisible = false;
+}
+
 // methods: {
 //     closeModals: function () {
 //     for (i = 0; i < this.skills.length; i++) {
