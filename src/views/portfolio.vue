@@ -5,6 +5,25 @@ const darkTheme = ref(false);
 const frame = ref(1);
 const isModalVisible = ref(false);
 const experiences = ref([
+              {
+              title: "Senior Reporting Accountant",
+              company: "DigitalBridge Group",
+              location: "Los Angeles",
+              timeframe: "July 2021 - Present",
+              summary: `
+                        In this role, I assisted a large accelerated filer through its sale of two reporting segments and transformation from a traditional REIT to a C-Corp. This happened over the course of four quarterly reports and one annual report. 
+                        In my current role, I am challenged with finding ways to automate recurring tasks performed at each period end, which allows me to think creatively as a developer and pragmatically as an accountant.
+                        <br><br>
+                        Transferrable skills include change management, general ledger analysis, and process improvement.
+                    `,
+              skillsAcquired: [
+                "Cross-functional Collaboration",
+                "Data Analysis",
+                "Data Collection",
+              ],
+              expanded: false,
+              minimizedLength: 500,
+            },
             {
               title: "Experienced Audit Associate",
               company: "KPMG",
@@ -12,12 +31,11 @@ const experiences = ref([
               timeframe: "August 2019 - June 2021",
               summary: `
                         As an audit associate in the Los Angeles practice, I have experience providing audit services to large private and public Financial Services companies. 
-                        The opportunity to work directly with upper level management has helped cultivate strong verbal and written communication skills. Additionally, as part of our year-end audits,
-                        the audit team works diligently to meet deadlines by appropriately allocating our time between material gathering, technical research & documentation, and manager review.
-                        <br><br>
+                        The opportunity to work directly with upper-level management has helped cultivate strong verbal and written communication skills.
                         My proudest achievements at the firm have been owning and managing the audit services over a bank's deposit portfolio, driving KPMG's digital transformation effort on a national level,
-                        and designing scripts and routines to automate repetitive tasks thereby reducing hours spent working and charged. Transferrable skills from this position
-                        include adept financial statement analysis, detail-oriented & questioning mindset, and deadline driven work ethic. 
+                        and designing scripts and routines to automate repetitive tasks thereby reducing hours spent working and charged. 
+                        <br><br>
+                        Transferrable skills from this position include adept financial statement analysis, detail-oriented & questioning mindset, and deadline driven work ethic. 
                     `,
               skillsAcquired: [
                 "10-K Analysis",
@@ -39,8 +57,9 @@ const experiences = ref([
                         The opportunity to work as a Resident Advisor (RA) during my undergraduate degree contributed heavily to how I approach team dynamics. 
                         My position as an RA has strengthened my communication habits (e.g., active listening) as I worked with 60+ residents and fellow RA's with different
                         communication styles. Over the span of two years, I was encouraged to wear different hats across multiple teams to aid each resident's undergraduate 
-                        journey. Additionally, for the two academic years as an RA, I have hosted 30+ successful programs within budget. Transferrable skills from this position
-                        include critical thinking and verbal communication.
+                        journey. Additionally, for the two academic years as an RA, I have hosted 30+ successful programs within budget. 
+                        <br><br>
+                        Transferrable skills from this position include critical thinking and verbal communication.
                     `,
               skillsAcquired: [
                 "Budget Management",
@@ -50,27 +69,7 @@ const experiences = ref([
               ],
               expanded: false,
               minimizedLength: 490,
-            },
-            {
-              title: "Business Development Supervisor",
-              company: "CourseKey",
-              location: "San Diego",
-              timeframe: "February 2016 - May 2016",
-              summary: `
-                        During my time at CourseKey, I was fortunate enough to work with highly motivated individuals and pick their brains. I primarily assisted with the 
-                        data gathering and customer due diligence efforts to assist the sales team. I focused heavily on our customer relationship management databases (i.e., Salesforce and HubSpot)
-                        and spent most of my time researching our target customers' websites collecting information. As the role was recently introduced to the Company, I independently 
-                        established routines to assist the company's growth. Transferrable skills include data collection and the ability to 
-                        communicate insights across functional teams.
-                    `,
-              skillsAcquired: [
-                "Cross-functional Collaboration",
-                "Data Analysis",
-                "Data Collection",
-              ],
-              expanded: false,
-              minimizedLength: 500,
-            },
+            }
 ]);
 const skills = reactive([
             {
