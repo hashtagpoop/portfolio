@@ -13,7 +13,7 @@
     <meta
       name="image"
       property="og:image"
-      content="http://ruoyuchen.us/static/websitePreview.png"
+      content="http://ruoyuchen.us/src/assets/websitePreview.png"
     />
     <meta
       name="description"
@@ -34,45 +34,14 @@
       href="https://fonts.googleapis.com/css2?family=Catamaran:wght@800&display=swap"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" href="./static/favicon.ico" />
-    <link rel="apple-touch-icon" href="./static/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="./src/assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="./src/assets/apple-touch-icon.png" />
     <title>Welcome | Ruoyu Chen</title>
   </head>
   <body>
     <div id="app"></div>
 
-    <script type="module" src="/src/main.js"></script>
-    <!-- ************************* VUE ************************* -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-    <script>
-      var app = new Vue({
-        el: "#app",
-        methods: {
-          closeModals: function () {
-            for (i = 0; i < this.skills.length; i++) {
-              this.skills[i].modalShowing = false;
-            }
-            this.isModalVisible = false;
-          },
-        },
-        watch: {
-          isModalVisible: function () {
-            if (this.isModalVisible) {
-              document.documentElement.style.overflow = "hidden";
-              return;
-            }
-
-            document.documentElement.style.overflow = "auto";
-          },
-        },
-      });
-    </script>
+    <script type="module" src="./src/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js"></script>
-    <script>
-      var rellax = new Rellax(".rellax", {
-        center: false,
-      });
-    </script>
   </body>
 </html>

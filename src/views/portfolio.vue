@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 
 const darkTheme = ref(false);
 const frame = ref(1);
@@ -72,7 +72,7 @@ const experiences = ref([
               minimizedLength: 500,
             },
 ]);
-const skills = ref([
+const skills = reactive([
             {
               name: "Microsoft Excel",
               picture: "./src/assets/excel.svg",
@@ -109,26 +109,24 @@ const skills = ref([
 ]);
 const interests = ref([
             "Basketball - New Orleans Pelicans",
-            "Investing - CVS, DIS, FTNT & TER",
-            "Design - Adobe XD, Affinity Designer",
+            "Investing - BL, CVS, FTNT & PATH",
             "Web Development - HTML, Python, Vue.js",
 ]);
 
 function closeModals () {
-    for (i = 0; i < this.skills.length; i++) {
-        this.skills[i].modalShowing = false;
+    var i = 0;
+    for (i = 0; i < skills.length; i++) {
+        skills[i].modalShowing = false;
     }
-    this.isModalVisible = false;
+    isModalVisible.value = false;
 }
 
-// methods: {
-//     closeModals: function () {
-//     for (i = 0; i < this.skills.length; i++) {
-//         this.skills[i].modalShowing = false;
-//     }
-//     this.isModalVisible = false;
-//     },
-// },
+onMounted(() => {
+  var rellax = new Rellax(".rellax", {
+    center: false,
+    });
+})
+
 // watch: {
 //     isModalVisible: function () {
 //     if (this.isModalVisible) {
@@ -144,7 +142,6 @@ function closeModals () {
 
 <template>
 <div
-      id="app"
       :class="darkTheme ? 'darkThemeBackground' : ''"
       class="themeSwap"
     >
@@ -406,30 +403,7 @@ function closeModals () {
               Education
             </h2>
             <br />
-            <div class="educationCard">
-              <img
-                v-if="!darkTheme"
-                style="height: 90px; align-self: center"
-                src="../assets/cba.jpg"
-              />
-              <img
-                v-else
-                style="height: 90px; align-self: center; filter: grayscale(50%)"
-                src="../assets/cbaDarkMode.png"
-              />
-
-              <div
-                class="themeSwap"
-                :class="darkTheme ? 'darkThemeFontColor' : ''"
-              >
-                <h3>California Board of Accountancy</h3>
-                <ul>
-                  <li>Passed all four sections of the CPA exam</li>
-                  <li>Experience requirement in progress</li>
-                </ul>
-                <p class="educationDate">Expected License: Jul. 2021</p>
-              </div>
-            </div>
+            
             <div class="educationCard">
               <img
                 v-if="!darkTheme"
@@ -454,6 +428,26 @@ function closeModals () {
                   <li>Minor in Management Information System</li>
                 </ul>
                 <p class="educationDate">Aug. 2015 - May 2019</p>
+              </div>
+            </div>
+            <div class="educationCard">
+              <img
+                v-if="!darkTheme"
+                style="height: 90px; align-self: center"
+                src="../assets/cba.jpg"
+              />
+              <img
+                v-else
+                style="height: 90px; align-self: center; filter: grayscale(50%)"
+                src="../assets/cbaDarkMode.png"
+              />
+
+              <div
+                class="themeSwap"
+                :class="darkTheme ? 'darkThemeFontColor' : ''"
+              >
+                <h3>California Board of Accountancy</h3>
+                <p class="educationDate">Licensed as of Feb. 2022</p>
               </div>
             </div>
           </div>
