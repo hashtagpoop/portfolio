@@ -74,7 +74,7 @@ const experiences = ref([
 const skills = reactive([
             {
               name: "Microsoft Excel",
-              picture: "./src/assets/excel.svg",
+              picture: "../src/assets/excel.svg",
               description: `My primary uses of excel are to clean and prepare data for analysis, 
                                     create models & reports to provide succinct, high-level summaries, 
                                     and organize & validate data. Capable of 
@@ -84,7 +84,7 @@ const skills = reactive([
             },
             {
               name: "Power BI",
-              picture: "./src/assets/powerBI.svg",
+              picture: "../src/assets/powerBI.svg",
               description: `I use Power BI for exploratory data analysis and project management & KPI monitoring. 
                                     Additionally, Power BI is effective for creating re-usable routines that help visualize each step of the data loading and cleaning process.`,
               showcase: false,
@@ -92,7 +92,7 @@ const skills = reactive([
             },
             {
               name: "Python",
-              picture: "./src/assets/python.svg",
+              picture: "../src/assets/python.svg",
               description: `My Python areas of expertise lie in ad-hoc data manipulation & analysis, automation scripts, 
                                     and data collection via web scraping. See a business use case I have implemented at my previous experience.`,
               showcase: true,
@@ -100,7 +100,7 @@ const skills = reactive([
             },
             {
               name: "Automation",
-              picture: "./src/assets/automation.png",
+              picture: "../src/assets/automation.png",
               description: `Have written Python scripts and created Power BI routines to automate administrative tasks and testwork procedures to reduce client-incurred expenses.`,
               showcase: false,
               modalShowing: false,
